@@ -52,13 +52,7 @@ import numpy.typing as npt
 import librosa
 import pretty_midi
 
-from basic_pitch.constants import (
-    AUDIO_SAMPLE_RATE,
-    AUDIO_N_SAMPLES,
-    ANNOTATIONS_FPS,
-    FFT_HOP,
-    AUDIO_WINDOW_LENGTH
-)
+from basic_pitch.constants import AUDIO_SAMPLE_RATE, AUDIO_N_SAMPLES, ANNOTATIONS_FPS, FFT_HOP, AUDIO_WINDOW_LENGTH
 from basic_pitch.commandline_printing import (
     generating_file_message,
     no_tf_warnings,
@@ -245,10 +239,7 @@ def get_audio_input(
 
 
 def unwrap_output(
-    output: npt.NDArray[np.float32],
-    audio_original_length: int,
-    n_overlapping_frames: int,
-    hop_size: int
+    output: npt.NDArray[np.float32], audio_original_length: int, n_overlapping_frames: int, hop_size: int
 ) -> np.array:
     """Unwrap batched model predictions to a single matrix.
 
@@ -272,7 +263,7 @@ def unwrap_output(
     # Concatenate the frames outputs (overlapping frames removed) into a single dimension
     output_shape = output.shape
     unwrapped_output = output.reshape(output_shape[0] * output_shape[1], output_shape[2])
-    
+
     # trim to number of expected windows in output
     n_expected_windows = audio_original_length / hop_size
     n_frames_per_window = (AUDIO_WINDOW_LENGTH * ANNOTATIONS_FPS) - n_overlapping_frames
@@ -310,7 +301,8 @@ def run_inference(
             output[k].append(v)
 
     unwrapped_output = {
-        k: unwrap_output(np.concatenate(output[k]), audio_original_length, n_overlapping_frames, hop_size) for k in output
+        k: unwrap_output(np.concatenate(output[k]), audio_original_length, n_overlapping_frames, hop_size)
+        for k in output
     }
 
     if debug_file:
