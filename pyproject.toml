@@ -15,20 +15,18 @@ classifiers = [
 	"Programming Language :: Python :: 3.10",
 	"Programming Language :: Python :: 3.11",
 	"Programming Language :: Python :: 3.12",
-	"Programming Language :: Python :: 3.13",
 	"Programming Language :: Python :: Implementation :: CPython",
 ]
 dependencies = [
 	"coremltools; platform_system == 'Darwin'",
 	"librosa>=0.8.0",
 	"mir_eval>=0.6.0",
-	"numpy>=1.18",
 	"onnxruntime; platform_system == 'Windows' and python_version < '3.11'",
 	"pretty_midi>=0.2.9",
 	"resampy>=0.2.2,<0.4.3",
 	"scikit-learn",
 	"scipy>=1.4.1",
-	"tensorflow>=2.16.0;python_version >= '3.11'",
+	"tensorflow>=2.16.0,<2.20.0;python_version >= '3.11'",
 	"tflite-runtime; platform_system == 'Linux' and python_version < '3.11'",
 	"typing_extensions",
 ]
@@ -68,7 +66,7 @@ test = [
 	"mido"
 ]
 tf = [
-	"tensorflow>=2.16.1"
+	"tensorflow>=2.16.0,<2.20.0"
 ]
 coreml = ["coremltools"] 
 onnx = ["onnxruntime"]
