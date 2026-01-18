@@ -10,18 +10,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
         py:
+          - "3.13"
           - "3.12"
-          - "3.11"
-          - "3.10"
         include:
-          - os: macos-latest-xlarge
-            py: "3.10.11"
-          - os: macos-latest-xlarge
-            py: "3.11.8"
           - os: macos-latest-xlarge
             py: "3.12"
           - os: macos-latest-xlarge
@@ -32,15 +24,9 @@ jobs:
         with:
           python-version: ${{ matrix.py }}
       - uses: actions/checkout@v3
-      - name: Install soundlibs Ubuntu
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y --fix-missing pkg-config libsndfile1 sox ffmpeg
-        if: matrix.os == 'ubuntu-latest'
       - name: Install soundlibs MacOs
         run: brew install libsndfile llvm libomp sox ffmpeg
         if: matrix.os == 'macos-latest-xlarge'
-      - name: Install soundlibs Windows
-        run: choco install libsndfile sox.portable flac ffmpeg
-        if: matrix.os == 'windows-latest'
       - name: Upgrade pip
         run: python -m pip install -U pip
       - name: Install tox
@@ -48,7 +34,7 @@ jobs:
       # We will only check this on the minimum python version
       - name: Check formatting, lint and mypy
         run: tox -c tox.ini -e check-formatting,lint,mypy
-        if: matrix.py == '3.10'
+        if: matrix.py == '3.12'
       - name: Run test suite
         run: tox -c tox.ini -e py,manifest,full
       - name: Check that basic-pitch can be run as a commandline
