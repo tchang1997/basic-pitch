@@ -148,3 +148,6 @@ junit.xml
 
 # intellij
 .idea/
+
+# for personal convenience
+uv.lock 

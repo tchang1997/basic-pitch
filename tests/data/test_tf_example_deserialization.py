@@ -15,11 +15,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import apache_beam as beam
 import numpy as np
 import pathlib
+import pytest
 import shutil
-import tensorflow as tf
+
+beam = pytest.importorskip("apache_beam")
+tf = pytest.importorskip("tensorflow")
 
 from apache_beam.testing.test_pipeline import TestPipeline
 from typing import List

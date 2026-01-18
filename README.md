@@ -44,13 +44,13 @@ To update Basic Pitch to the latest version, add `--upgrade` to the above comman
 
 #### Compatible Environments:
 - MacOS, Windows and Ubuntu operating systems
-- Python versions 3.7, 3.8, 3.9, 3.10, 3.11
-- **For Mac M1 hardware, we currently only support python version 3.10. Otherwise, we suggest using a virtual machine.**
+- Python versions 3.10, 3.11, 3.12, 3.13
+- For Apple Silicon, CoreML is the default runtime; install `basic-pitch[tf]` if you need TensorFlow and have a supported build.
 
 
 ### Model Runtime
 
-Basic Pitch comes with the original TensorFlow model and the TensorFlow model converted to [CoreML](https://developer.apple.com/documentation/coreml), [TensorFlowLite](https://www.tensorflow.org/lite), and [ONNX](https://onnx.ai/). By default, Basic Pitch will _not_ install TensorFlow as a dependency *unless you are using Python>=3.11*. Instead, by default, CoreML will be installed on MacOS, TensorFlowLite will be installed on Linux and ONNX will be installed on Windows. If you want to install TensorFlow along with the default model inference runtime, you can install TensorFlow via `pip install basic-pitch[tf]`.
+Basic Pitch comes with the original TensorFlow model and the TensorFlow model converted to [CoreML](https://developer.apple.com/documentation/coreml), [TensorFlowLite](https://www.tensorflow.org/lite), and [ONNX](https://onnx.ai/). By default, Basic Pitch does not install TensorFlow on macOS. Instead, CoreML will be installed on macOS, TensorFlowLite will be installed on Linux and ONNX will be installed on Windows. If you want to install TensorFlow along with the default model inference runtime, you can install TensorFlow via `pip install basic-pitch[tf]` (requires a supported TensorFlow build for your Python version).
 
 ## Usage
 
@@ -221,4 +221,3 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 
 Unless required by applicable law or agreed to in writing, software distributed under the Apache License or the GPL License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the Apache License for the specific language governing permissions and limitations under the Apache License.
-

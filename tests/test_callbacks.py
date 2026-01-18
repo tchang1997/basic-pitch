@@ -16,7 +16,9 @@
 # limitations under the License.
 
 import numpy as np
-import tensorflow as tf
+import pytest
+
+tf = pytest.importorskip("tensorflow")
 
 from typing import Dict
 

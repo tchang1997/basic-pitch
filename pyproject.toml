@@ -15,6 +15,7 @@ classifiers = [
 	"Programming Language :: Python :: 3.10",
 	"Programming Language :: Python :: 3.11",
 	"Programming Language :: Python :: 3.12",
+	"Programming Language :: Python :: 3.13",
 	"Programming Language :: Python :: Implementation :: CPython",
 ]
 dependencies = [
@@ -26,7 +27,7 @@ dependencies = [
 	"resampy>=0.2.2,<0.4.3",
 	"scikit-learn",
 	"scipy>=1.4.1",
-	"tensorflow>=2.16.0,<2.20.0;python_version >= '3.11'",
+	"tensorflow>=2.16.0,<2.20.0; platform_system != 'Darwin' and python_version >= '3.11' and python_version < '3.13'",
 	"tflite-runtime; platform_system == 'Linux' and python_version < '3.11'",
 	"typing_extensions",
 ]
@@ -51,15 +52,14 @@ bp-download = "basic_pitch.data.download:main"
 
 [project.optional-dependencies]
 data = [
-    "basic_pitch[tf,test]",
-    "apache-beam>=2.50.0",
-    "mirdata>=1.0.0",
-    "smart_open",
-    "sox",
-    "ffmpeg-python"
+	"apache-beam>=2.50.0",
+	"mirdata>=1.0.0",
+	"smart_open",
+	"sox",
+	"ffmpeg-python",
+	"tensorflow>=2.16.0,<2.20.0; platform_system != 'Darwin' and python_version >= '3.11' and python_version < '3.13'",
 ]
 test = [
-	"basic_pitch[data]",
 	"coverage>=5.0.2",
 	"pytest>=6.1.1",
 	"pytest-mock",

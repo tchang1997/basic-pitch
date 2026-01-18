@@ -19,7 +19,9 @@ from typing import Iterator, Tuple
 import unittest
 
 import numpy as np
-import tensorflow as tf
+import pytest
+
+tf = pytest.importorskip("tensorflow")
 
 from basic_pitch import models, nn
 from basic_pitch.constants import (

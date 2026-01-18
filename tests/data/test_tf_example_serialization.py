@@ -16,8 +16,10 @@
 # limitations under the License.
 
 import pathlib
-import sox
-import tensorflow as tf
+import pytest
+
+sox = pytest.importorskip("sox")
+tf = pytest.importorskip("tensorflow")
 
 from basic_pitch.constants import AUDIO_N_CHANNELS, AUDIO_SAMPLE_RATE
 from basic_pitch.data.tf_example_serialization import to_transcription_tfexample
